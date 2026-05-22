@@ -2,6 +2,8 @@
 
 [![npm](https://img.shields.io/npm/v/@knowsy/skos-picker.svg)](https://www.npmjs.com/package/@knowsy/skos-picker)
 [![CI](https://github.com/knowsy-nl/skos-picker/actions/workflows/ci.yml/badge.svg)](https://github.com/knowsy-nl/skos-picker/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/knowsy-nl/skos-picker/actions/workflows/codeql.yml/badge.svg)](https://github.com/knowsy-nl/skos-picker/actions/workflows/codeql.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/knowsy-nl/skos-picker/badge)](https://scorecard.dev/viewer/?uri=github.com/knowsy-nl/skos-picker)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 A modern replacement for a `<select>` bound to a SKOS controlled list. It
