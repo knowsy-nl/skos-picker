@@ -1,0 +1,4 @@
+node_modules
+dist
+pnpm-lock.yaml
+CODE_OF_CONDUCT.md

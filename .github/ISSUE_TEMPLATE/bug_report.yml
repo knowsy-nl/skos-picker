@@ -1,0 +1,50 @@
+name: Bug report
+description: Report something that isn't working as expected.
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to file a bug! Please fill out the details below.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Which version of @knowsy/skos-picker?
+      placeholder: '1.0.0'
+    validations:
+      required: true
+  - type: dropdown
+    id: usage
+    attributes:
+      label: How are you using it?
+      options:
+        - Vanilla web component (<skos-picker>)
+        - React (@knowsy/skos-picker/react)
+        - Angular adapter
+        - Vue
+        - Svelte
+        - SolidJS
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction
+      description: Minimal steps or a link to a reproduction (CodeSandbox/StackBlitz is ideal).
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      description: Browser/version, framework version, build tool.
+    validations:
+      required: false

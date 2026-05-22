@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>&lt;skos-picker&gt; — standalone web component demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: #f8f9fa;
+        padding: 2rem 1rem;
+        font-family:
+          system-ui,
+          -apple-system,
+          'Segoe UI',
+          Roboto,
+          sans-serif;
+      }
+      .demo-card {
+        background: #fff;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+      }
+      .demo-card h5 {
+        color: #0d6efd;
+        margin-bottom: 0.25rem;
+      }
+      .demo-card .demo-sub {
+        color: #6c757d;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      pre {
+        background: #212529;
+        color: #f8f9fa;
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        font-size: 0.78rem;
+        overflow-x: auto;
+        margin-top: 0.75rem;
+      }
+      code.inline {
+        background: #f1f3f5;
+        padding: 0.1rem 0.35rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+      }
+      .form-output {
+        background: #f1f3f5;
+        font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+        font-size: 0.78rem;
+        padding: 0.6rem 0.8rem;
+        border-radius: 4px;
+        margin-top: 0.75rem;
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" style="max-width: 900px">
+      <h2 class="text-primary mb-1">&lt;skos-picker&gt;</h2>
+      <p class="text-muted mb-4">
+        A framework-agnostic SKOS concept picker. This page contains no React, no JSX, and no build
+        pipeline — only one
+        <code class="inline">&lt;script type="module"&gt;</code> tag and the custom element. Drop
+        the same two lines into any <code class="inline">.html</code>,
+        <code class="inline">.razor</code>
+        or server-rendered template and the picker behaves identically.
+      </p>
+
+      <!-- ─── 1. Default behaviour ─────────────────────────────────── -->
+      <div class="demo-card">
+        <h5>1 · Default — Cuisine picker, single value</h5>
+        <p class="demo-sub">
+          Minimal markup. Three attributes:
+          <code class="inline">scheme-id</code>, <code class="inline">value</code>,
+          <code class="inline">name</code>. The element behaves like a form control: the chosen
+          value is submitted as <code class="inline">CuisineId</code>.
+        </p>
+        <form id="form-1">
+          <skos-picker
+            name="CuisineId"
+            scheme-id="Cuisine"
+            value="Italian"
+            placeholder="Pick a cuisine…"
+          ></skos-picker>
+          <button class="btn btn-primary btn-sm mt-3" type="submit">Submit form</button>
+          <div class="form-output" id="form-output-1">(form not submitted yet)</div>
+        </form>
+        <pre>
+&lt;form&gt;
+  &lt;skos-picker
+    name="CuisineId"
+    scheme-id="Cuisine"
+    value="Italian"&gt;&lt;/skos-picker&gt;
+  &lt;button type="submit"&gt;Save&lt;/button&gt;
+&lt;/form&gt;</pre
+        >
+      </div>
+
+      <!-- ─── 2. Multi-select ──────────────────────────────────────── -->
+      <div class="demo-card">
+        <h5>2 · Multi-select — Music Genre</h5>
+        <p class="demo-sub">
+          Add the <code class="inline">multiple</code> attribute and the picker renders chips.
+          Submitted as a comma-separated string. Try typing "rap" (an alternative name) or "bebop".
+        </p>
+        <skos-picker name="MusicGenreIds" scheme-id="Music-Genre" multiple></skos-picker>
+        <pre>
+&lt;skos-picker
+  name="MusicGenreIds"
+  scheme-id="Music-Genre"
+  multiple&gt;&lt;/skos-picker&gt;</pre
+        >
+      </div>
+
+      <!-- ─── 3. Stripped-down — every cosmetic feature OFF ──────── -->
+      <div class="demo-card">
+        <h5>3 · Stripped-down — every visual extra turned off</h5>
+        <p class="demo-sub">
+          Every cosmetic feature can be opted out of with a
+          <code class="inline">hide-*</code> attribute. Useful when the dropdown should look exactly
+          like the existing app.
+        </p>
+        <skos-picker
+          name="Language"
+          scheme-id="Programming-Language"
+          value="Python"
+          hide-footer
+          hide-notations
+          hide-alt-labels
+          hide-definitions
+          hide-counter
+          hide-group-headers
+        ></skos-picker>
+        <pre>
+&lt;skos-picker
+  scheme-id="Programming-Language"
+  value="Python"
+  hide-footer
+  hide-notations
+  hide-alt-labels
+  hide-definitions
+  hide-counter
+  hide-group-headers&gt;&lt;/skos-picker&gt;</pre
+        >
+      </div>
+
+      <!-- ─── 4. Granular footer control ──────────────────────────── -->
+      <div class="demo-card">
+        <h5>4 · Granular footer — keep hints, hide the scheme code</h5>
+        <p class="demo-sub">
+          Hide just the bits the team doesn't want. Below: keyboard hints stay, the
+          <code class="inline">Programming-Language</code> scheme code is gone.
+        </p>
+        <skos-picker
+          name="LanguageId"
+          scheme-id="Programming-Language"
+          hide-scheme-code
+        ></skos-picker>
+        <pre>
+&lt;skos-picker scheme-id="Programming-Language" hide-scheme-code&gt;&lt;/skos-picker&gt;</pre
+        >
+      </div>
+
+      <!-- ─── 5. Theming via CSS custom properties ────────────────── -->
+      <div class="demo-card">
+        <h5>5 · Theming — match the host page colours</h5>
+        <p class="demo-sub">
+          The element exposes CSS custom properties so the host page can theme it without touching
+          its internals. Below: a darker accent.
+        </p>
+        <skos-picker
+          name="RoastLevel"
+          scheme-id="Roast-Level"
+          style="
+            --skos-picker-border: #6f42c1;
+            --skos-picker-border-focus: #8b5cf6;
+            --skos-picker-active-bg: #f3e8ff;
+            --skos-picker-notation-bg: #ede9fe;
+            --skos-picker-notation-fg: #5b21b6;
+            --skos-picker-chip-bg: linear-gradient(135deg, #ede9fe, #ddd6fe);
+            --skos-picker-chip-fg: #5b21b6;
+          "
+        ></skos-picker>
+        <pre>
+&lt;skos-picker
+  scheme-id="Roast-Level"
+  style="
+    --skos-picker-border: #6f42c1;
+    --skos-picker-active-bg: #f3e8ff;
+    --skos-picker-chip-fg: #5b21b6;
+  "&gt;&lt;/skos-picker&gt;</pre
+        >
+      </div>
+
+      <!-- ─── 6. Listening for change events ──────────────────────── -->
+      <div class="demo-card">
+        <h5>6 · Listening for changes from plain JavaScript</h5>
+        <p class="demo-sub">
+          The element fires a <code class="inline">change</code> event with
+          <code class="inline">event.detail.value</code>. Works with jQuery, vanilla JS, knockout,
+          anything.
+        </p>
+        <skos-picker id="picker-6" name="CuisineId" scheme-id="Cuisine"></skos-picker>
+        <div class="form-output" id="form-output-6">change event will appear here…</div>
+        <pre>
+const picker = document.getElementById('picker-6');
+picker.addEventListener('change', (e) =&gt; {
+  console.log('user picked', e.detail.value);
+});</pre
+        >
+      </div>
+
+      <!-- ─── 7. Multilingual — language maps, switched client-side ── -->
+      <div class="demo-card">
+        <h5>7 · Multilingual — one payload, switch language live</h5>
+        <p class="demo-sub">
+          This picker loads from a <code class="inline">data-source</code> whose labels are
+          <em>language maps</em> (<code class="inline">{ "en": …, "nl": … }</code>). The buttons
+          just flip the <code class="inline">lang</code> attribute — labels switch instantly with
+          <strong>no re-fetch</strong>, and the selected value (the concept IRI) is unchanged.
+        </p>
+        <div class="mb-2">
+          <button class="btn btn-outline-primary btn-sm" data-lang="en" type="button">
+            English
+          </button>
+          <button class="btn btn-outline-primary btn-sm" data-lang="nl" type="button">
+            Nederlands
+          </button>
+          <button class="btn btn-outline-secondary btn-sm" data-lang="de" type="button">
+            Deutsch (partial)
+          </button>
+        </div>
+        <skos-picker id="picker-7" scheme-id="Cuisine" lang="en"></skos-picker>
+        <div class="form-output" id="form-output-7">value (always the IRI) will appear here…</div>
+        <pre>
+&lt;skos-picker scheme-id="Cuisine" lang="en"
+             data-source="…returns language maps…"&gt;&lt;/skos-picker&gt;
+// switch language — no re-fetch, value (IRI) stays put:
+picker.setAttribute('lang', 'nl');</pre
+        >
+      </div>
+    </div>
+
+    <!-- ─── The only script tag the host page needs ─────────────── -->
+    <script type="module" src="../src/web-component/skos-picker.js"></script>
+
+    <script>
+      // Form 1 — show the FormData when submitted
+      document.getElementById('form-1').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = new FormData(e.target);
+        const out = [];
+        for (const [k, v] of data.entries()) out.push(`${k} = ${v}`);
+        document.getElementById('form-output-1').textContent = out.join('\n') || '(empty)';
+      });
+
+      // Picker 6 — log change events
+      document.getElementById('picker-6').addEventListener('change', (e) => {
+        document.getElementById('form-output-6').textContent =
+          'change → value = ' + JSON.stringify(e.detail.value);
+      });
+
+      // ─── Picker 7 — multilingual via a language-map data-source ──────
+      // Build a real fetch-able endpoint with a blob: URL so the demo
+      // exercises the actual data-source code path with no backend.
+      // Labels are language maps; "de" is intentionally partial to show
+      // fallback (missing German falls back to en). "Fusion" carries an
+      // untagged literal ("@none") to show the SKOS plain-literal case.
+      const BASE = 'https://example.org/vocab/Cuisine';
+      const i18nScheme = {
+        id: BASE,
+        label: { en: 'Cuisine', nl: 'Keuken', de: 'Küche' },
+        concepts: [
+          {
+            id: BASE + '/Italian',
+            label: { en: 'Italian', nl: 'Italiaans', de: 'Italienisch' },
+            group: { en: 'Europe', nl: 'Europa', de: 'Europa' },
+          },
+          {
+            id: BASE + '/French',
+            label: { en: 'French', nl: 'Frans', de: 'Französisch' },
+            group: { en: 'Europe', nl: 'Europa', de: 'Europa' },
+          },
+          {
+            id: BASE + '/Japanese',
+            label: { en: 'Japanese', nl: 'Japans' },
+            group: { en: 'Asia', nl: 'Azië' },
+          },
+          {
+            id: BASE + '/Thai',
+            label: { en: 'Thai', nl: 'Thais' },
+            group: { en: 'Asia', nl: 'Azië' },
+          },
+          {
+            id: BASE + '/Mexican',
+            label: { en: 'Mexican', nl: 'Mexicaans' },
+            group: { en: 'Americas', nl: 'Amerika' },
+          },
+          { id: BASE + '/Fusion', label: { '@none': 'Fusion' } }, // untagged literal
+        ],
+      };
+      const blobUrl = URL.createObjectURL(
+        new Blob([JSON.stringify(i18nScheme)], { type: 'application/json' })
+      );
+      const picker7 = document.getElementById('picker-7');
+      picker7.setAttribute('data-source', blobUrl);
+
+      const out7 = document.getElementById('form-output-7');
+      const showVal7 = () =>
+        (out7.textContent =
+          'lang = ' +
+          picker7.getAttribute('lang') +
+          '  ·  value (IRI) = ' +
+          JSON.stringify(picker7.value));
+      picker7.addEventListener('change', showVal7);
+
+      document.querySelectorAll('[data-lang]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          picker7.setAttribute('lang', btn.dataset.lang);
+          showVal7();
+        });
+      });
+    </script>
+  </body>
+</html>
