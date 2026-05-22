@@ -5,10 +5,26 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore(deps)
+      prefix-development: chore(dev-deps)
     groups:
-      dev-dependencies:
+      # Bundle all non-breaking dev-dependency bumps into ONE weekly PR.
+      # Majors are excluded so a risky bump arrives as its own visible PR
+      # rather than hidden inside a green group.
+      dev-minor-patch:
         dependency-type: development
+        update-types:
+          - minor
+          - patch
+
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
       interval: weekly
+    commit-message:
+      prefix: ci
+    groups:
+      github-actions:
+        patterns:
+          - '*'
