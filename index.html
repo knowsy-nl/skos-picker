@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@taxonomy/skos-picker — demos</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        background: #f8f9fa;
+        color: #0f172a;
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 3rem 1.5rem;
+        line-height: 1.6;
+      }
+      h1 { margin-bottom: 0.25rem; }
+      .sub { color: #64748b; margin-top: 0; }
+      .card {
+        display: block;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.5rem;
+        padding: 1.25rem 1.5rem;
+        margin: 1rem 0;
+        text-decoration: none;
+        color: inherit;
+        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+      }
+      .card:hover { border-color: #2563eb; }
+      .card h3 { margin: 0 0 0.25rem; color: #2563eb; }
+      .card p { margin: 0; color: #475569; font-size: 0.9rem; }
+      code { background: #f1f5f9; padding: 0.1rem 0.35rem; border-radius: 3px; }
+    </style>
+  </head>
+  <body>
+    <h1>&lt;skos-picker&gt;</h1>
+    <p class="sub">
+      A framework-agnostic SKOS taxonomy picker. Two interchangeable
+      implementations — pick the one that fits your stack.
+    </p>
+
+    <a class="card" href="demo/web-component-demo.html">
+      <h3>Vanilla web component →</h3>
+      <p>
+        The <code>&lt;skos-picker&gt;</code> custom element. Drop a single
+        <code>&lt;script&gt;</code> tag into any HTML / <code>.cshtml</code> /
+        <code>.razor</code> page. No framework.
+      </p>
+    </a>
+
+    <a class="card" href="demo/react-demo.html">
+      <h3>React component →</h3>
+      <p>
+        The <code>&lt;SkosPicker&gt;</code> React component, same UX, for a
+        React app.
+      </p>
+    </a>
+
+    <p class="sub" style="margin-top: 2rem; font-size: 0.85rem;">
+      See <code>README.md</code> for usage, attributes and the production
+      data-source contract.
+    </p>
+  </body>
+</html>

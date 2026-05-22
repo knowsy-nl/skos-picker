@@ -1,0 +1,363 @@
+/* Styles for the React <SkosPicker> component (SkosPicker.jsx).
+   Import this once in your app (e.g. `import './skos-picker.css'`).
+   The vanilla web component in ../web-component/skos-picker.js carries
+   its own styles in shadow DOM and does NOT need this file. */
+
+.skos-picker {
+  position: relative;
+}
+.skos-picker-control {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  min-height: calc(2.25rem + 2px);
+  padding: 0.3rem 0.5rem;
+  background: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 0.375rem;
+  cursor: text;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.skos-picker-control:hover {
+  border-color: #adb5bd;
+}
+.skos-picker.open .skos-picker-control,
+.skos-picker-control:focus-within {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  outline: 0;
+}
+.skos-picker-placeholder {
+  color: #6c757d;
+  padding: 0.1rem 0.25rem;
+}
+.skos-picker-single .skos-picker-control {
+  cursor: pointer;
+}
+.skos-picker-single-value {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  flex: 1;
+  padding: 0.1rem 0.25rem;
+  color: #212529;
+  min-width: 0;
+}
+.skos-picker-single-value .value-notation {
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: #e7f1ff;
+  color: #084298;
+  border: 1px solid #b6d4fe;
+  border-radius: 4px;
+  padding: 0 0.35rem;
+}
+.skos-picker-single-value .value-label {
+  font-weight: 500;
+}
+.skos-picker-single-value .value-alts {
+  font-size: 0.78rem;
+  color: #6c757d;
+}
+.skos-picker-clear {
+  background: transparent;
+  border: none;
+  color: #adb5bd;
+  padding: 0.1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.skos-picker-clear:hover {
+  background: #f1f3f5;
+  color: #495057;
+}
+.skos-picker-input {
+  flex: 1;
+  min-width: 80px;
+  border: none;
+  outline: none;
+  padding: 0.1rem 0.25rem;
+  background: transparent;
+  font-size: 0.95rem;
+}
+.skos-picker-caret {
+  margin-left: auto;
+  color: #6c757d;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+/* Concept chip */
+.skos-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: linear-gradient(135deg, #e7f1ff, #dbeafe);
+  color: #084298;
+  border: 1px solid #b6d4fe;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.825rem;
+  font-weight: 500;
+  line-height: 1.4;
+  max-width: 100%;
+}
+.skos-chip .scheme-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0d6efd;
+  flex-shrink: 0;
+}
+.skos-chip .chip-remove {
+  cursor: pointer;
+  color: #084298;
+  opacity: 0.65;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+.skos-chip .chip-remove:hover {
+  opacity: 1;
+}
+
+/* Dropdown panel */
+.skos-picker-panel {
+  position: absolute;
+  z-index: 1080;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  max-height: 360px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.18);
+  overflow: hidden;
+}
+.skos-picker-panel-header {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6c757d;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.skos-picker-suggestions {
+  padding: 0.5rem 0.75rem 0.25rem;
+  background: linear-gradient(180deg, #fff7ed 0%, #fff 100%);
+  border-bottom: 1px solid #fed7aa;
+}
+.skos-picker-suggestions-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #c2410c;
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.skos-picker-suggestion-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding-bottom: 0.5rem;
+}
+.skos-picker-suggestion {
+  background: #fff;
+  border: 1px dashed #fb923c;
+  color: #9a3412;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.12s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.skos-picker-suggestion:hover {
+  background: #fed7aa;
+  border-style: solid;
+}
+.skos-picker-options {
+  overflow-y: auto;
+  flex: 1;
+  padding: 0.25rem 0;
+}
+.skos-picker-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  border-left: 3px solid transparent;
+}
+.skos-picker-option:hover,
+.skos-picker-option.active {
+  background: #e7f1ff;
+  border-left-color: #0d6efd;
+}
+.skos-picker-option.selected {
+  background: #f0f9ff;
+  font-weight: 500;
+}
+.skos-picker-option.catchall {
+  opacity: 0.55;
+  font-style: italic;
+}
+.skos-picker-option .check {
+  width: 16px;
+  color: #0d6efd;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.skos-picker-option .label-block {
+  flex: 1;
+  min-width: 0;
+}
+.skos-picker-option .label-line {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+.skos-picker-option .label-text {
+  color: #212529;
+}
+.skos-picker-option .label-notation {
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: #e7f1ff;
+  color: #084298;
+  border: 1px solid #b6d4fe;
+  border-radius: 4px;
+  padding: 0 0.35rem;
+  line-height: 1.4;
+}
+.skos-picker-option .label-alts {
+  font-size: 0.78rem;
+  color: #6c757d;
+}
+.skos-picker-option .label-broader,
+.skos-picker-option .label-related {
+  font-size: 0.7rem;
+  color: #6c757d;
+  background: #f1f3f5;
+  border: 1px solid #e9ecef;
+  border-radius: 3px;
+  padding: 0 0.3rem;
+}
+.skos-picker-option .label-hidden-match {
+  font-size: 0.65rem;
+  font-weight: 600;
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  border-radius: 3px;
+  padding: 0 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.skos-picker-option .label-catchall-badge {
+  font-size: 0.65rem;
+  font-weight: 500;
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  border-radius: 3px;
+  padding: 0 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.skos-picker-option .label-definition {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.25rem;
+  font-size: 0.74rem;
+  color: #6c757d;
+  margin-top: 0.15rem;
+  line-height: 1.35;
+}
+.skos-picker-option .label-definition svg {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.skos-picker-group-header {
+  position: sticky;
+  top: 0;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #495057;
+  padding: 0.4rem 0.75rem;
+  z-index: 1;
+}
+.chip-notation,
+.suggest-notation {
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.7);
+  color: #084298;
+  border-radius: 3px;
+  padding: 0 0.3rem;
+  line-height: 1.4;
+  margin-right: 0.15rem;
+}
+.skos-picker-empty {
+  padding: 1rem 0.75rem;
+  text-align: center;
+  color: #6c757d;
+  font-size: 0.85rem;
+}
+.skos-picker-footer {
+  border-top: 1px solid #e9ecef;
+  padding: 0.4rem 0.75rem;
+  background: #f8f9fa;
+  font-size: 0.72rem;
+  color: #6c757d;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.skos-picker-footer code {
+  background: #fff;
+  padding: 0 0.25rem;
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+  font-size: 0.7rem;
+}
+
+mark.skos-match {
+  background: #fff3cd;
+  padding: 0;
+  border-radius: 2px;
+}
