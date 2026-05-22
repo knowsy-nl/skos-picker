@@ -1,0 +1,49 @@
+name: Release
+
+# Publishes @knowsy/skos-picker to npm when a version tag is pushed.
+#
+# Auth: npm Trusted Publishing (OIDC) — no NPM_TOKEN secret required.
+# One-time setup on npmjs.com: on the package's Settings → "Trusted Publisher",
+# add this GitHub repository and the workflow file name (release.yml).
+# Provenance is attached automatically when publishing via OIDC.
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+  id-token: write # required for OIDC trusted publishing + provenance
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Test
+        run: pnpm test
+
+      - name: Build Angular adapter
+        run: pnpm run build:angular
+
+      # Ensure a recent npm that supports OIDC trusted publishing.
+      - name: Update npm
+        run: npm install -g npm@latest
+
+      - name: Publish to npm
+        run: npm publish --provenance --access public

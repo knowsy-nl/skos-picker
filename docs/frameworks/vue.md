@@ -52,11 +52,7 @@ const cuisine = ref('Italian');
 > payload is on `detail.value`:
 >
 > ```vue
-> <skos-picker
->   scheme-id="Cuisine"
->   :value="cuisine"
->   @change="cuisine = $event.detail.value"
-> />
+> <skos-picker scheme-id="Cuisine" :value="cuisine" @change="cuisine = $event.detail.value" />
 > ```
 
 ## 3. Multi-select

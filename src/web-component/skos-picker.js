@@ -502,11 +502,7 @@ class SkosPickerElement extends HTMLElement {
   // Effective language: explicit attribute wins, then inherited <html lang>,
   // then "en". Use BCP-47 tags like "en", "nl", "de", "en-GB".
   _effectiveLang() {
-    return (
-      this.getAttribute('lang') ||
-      document.documentElement?.lang ||
-      'en'
-    );
+    return this.getAttribute('lang') || document.documentElement?.lang || 'en';
   }
 
   // Thin wrappers over the pure resolvers in ./resolve.js — they supply the
@@ -932,9 +928,11 @@ class SkosPickerElement extends HTMLElement {
           <div class="label-line">
             ${c.notation ? `<span class="notation">${c.notation}</span>` : ''}
             <span class="label-text">${this._highlight(c.label)}</span>
-            ${c.altLabels?.length
-              ? `<span class="label-alts">(${escapeHtml(c.altLabels.join(' / '))})</span>`
-              : ''}
+            ${
+              c.altLabels?.length
+                ? `<span class="label-alts">(${escapeHtml(c.altLabels.join(' / '))})</span>`
+                : ''
+            }
           </div>
           ${c.definition ? `<div class="label-definition">${escapeHtml(c.definition)}</div>` : ''}
         </div>

@@ -28,6 +28,7 @@ function TagForm() {
 ```
 
 Notes:
+
 - Use `prop:value` to set the **property** (so arrays for multi-select pass
   through as-is, not stringified into an attribute).
 - `on:change` binds the native `change` event; the payload is on
@@ -43,5 +44,5 @@ const [genres, setGenres] = createSignal([]); // string[]
   multiple
   prop:value={genres()}
   on:change={(e) => setGenres(e.detail.value)}
-/>
+/>;
 ```

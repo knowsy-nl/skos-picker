@@ -62,7 +62,9 @@ describe('<SkosPicker /> (React)', () => {
 
   it('supports multi-select: accumulates values and renders chips', () => {
     const onChange = vi.fn();
-    const { container } = render(<Controlled schemeId="Music-Genre" multiple onChange={onChange} />);
+    const { container } = render(
+      <Controlled schemeId="Music-Genre" multiple onChange={onChange} />
+    );
     fireEvent.click(container.querySelector('.skos-picker-control'));
 
     // Match the option's main label span exactly (option text also includes

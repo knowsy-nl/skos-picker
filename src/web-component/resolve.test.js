@@ -158,10 +158,7 @@ describe('sortConcepts', () => {
   });
 
   it('always pushes catch-alls last regardless of mode', () => {
-    const out = sortConcepts(
-      [c('1', 'Other', null, true), c('2', 'Go'), c('3', 'Java')],
-      'alpha'
-    );
+    const out = sortConcepts([c('1', 'Other', null, true), c('2', 'Go'), c('3', 'Java')], 'alpha');
     expect(out.map((x) => x.label)).toEqual(['Go', 'Java', 'Other']);
   });
 });

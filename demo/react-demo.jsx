@@ -21,29 +21,25 @@ function Demo() {
           onChange={setLanguage}
           placeholder="Pick a language…"
         />
-        <div className="value">value: <code>{JSON.stringify(language)}</code></div>
+        <div className="value">
+          value: <code>{JSON.stringify(language)}</code>
+        </div>
       </div>
 
       <div className="field">
         <label>Cuisine (single, grouped by region)</label>
-        <SkosPicker
-          schemeId="Cuisine"
-          value={cuisine}
-          onChange={setCuisine}
-          minChars={1}
-        />
-        <div className="value">value: <code>{JSON.stringify(cuisine)}</code></div>
+        <SkosPicker schemeId="Cuisine" value={cuisine} onChange={setCuisine} minChars={1} />
+        <div className="value">
+          value: <code>{JSON.stringify(cuisine)}</code>
+        </div>
       </div>
 
       <div className="field">
         <label>Music Genres (multi-select)</label>
-        <SkosPicker
-          schemeId="Music-Genre"
-          value={genres}
-          onChange={setGenres}
-          multiple
-        />
-        <div className="value">value: <code>{JSON.stringify(genres)}</code></div>
+        <SkosPicker schemeId="Music-Genre" value={genres} onChange={setGenres} multiple />
+        <div className="value">
+          value: <code>{JSON.stringify(genres)}</code>
+        </div>
       </div>
     </>
   );

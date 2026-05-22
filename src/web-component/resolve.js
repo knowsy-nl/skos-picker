@@ -30,8 +30,7 @@ export function pickLangKey(map, lang, langDefault = '') {
   if (!keys.length) return null;
   const want = String(lang || '').toLowerCase();
   const base = want.split('-')[0];
-  const byLower = (target) =>
-    target ? keys.find((k) => k.toLowerCase() === target) : undefined;
+  const byLower = (target) => (target ? keys.find((k) => k.toLowerCase() === target) : undefined);
   const untagged = keys.find((k) => k === '@none' || k === '');
   // NB: the untagged key can be "" (falsy), so step through with explicit
   // undefined checks rather than `||` (which would skip an empty-string key).
@@ -77,9 +76,7 @@ export function resolveLabel(label, lang, langDefault = '') {
  */
 export function resolveLabelArray(arr, lang, langDefault = '') {
   if (!Array.isArray(arr)) return [];
-  return arr
-    .map((x) => resolveLabel(x, lang, langDefault))
-    .filter((s) => s != null && s !== '');
+  return arr.map((x) => resolveLabel(x, lang, langDefault)).filter((s) => s != null && s !== '');
 }
 
 /** True if `v` is a language map (object, not array). */
@@ -118,7 +115,12 @@ export function payloadHasLangMaps(json) {
  */
 export function coerceValue(attr, multiple) {
   if (multiple) {
-    return attr ? attr.split(',').map((s) => s.trim()).filter(Boolean) : [];
+    return attr
+      ? attr
+          .split(',')
+          .map((s) => s.trim())
+          .filter(Boolean)
+      : [];
   }
   return attr || null;
 }

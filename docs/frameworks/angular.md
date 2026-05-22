@@ -29,7 +29,8 @@ import { SkosPickerValueAccessor } from '@knowsy/skos-picker/angular';
       scheme-id="Cuisine"
       data-source="/api/vocab/Cuisine"
       placeholder="Pick a cuisine…"
-      [(ngModel)]="cuisine">
+      [(ngModel)]="cuisine"
+    >
     </skos-picker>
     <p>Selected: {{ cuisine }}</p>
   `,
@@ -51,8 +52,7 @@ form = new FormGroup({
 
 ```html
 <form [formGroup]="form">
-  <skos-picker scheme-id="Cuisine" formControlName="cuisine">
-  </skos-picker>
+  <skos-picker scheme-id="Cuisine" formControlName="cuisine"> </skos-picker>
 </form>
 ```
 
@@ -61,8 +61,7 @@ form = new FormGroup({
 Add the `multiple` attribute; the bound value becomes a `string[]`:
 
 ```html
-<skos-picker scheme-id="Music-Genre" multiple [(ngModel)]="genres">
-</skos-picker>
+<skos-picker scheme-id="Music-Genre" multiple [(ngModel)]="genres"> </skos-picker>
 ```
 
 ```ts
@@ -75,9 +74,6 @@ If you don't need `ngModel`/reactive forms, you can skip the directive and
 bind manually:
 
 ```html
-<skos-picker
-  scheme-id="Cuisine"
-  [attr.value]="cuisine"
-  (change)="cuisine = $event.detail.value">
+<skos-picker scheme-id="Cuisine" [attr.value]="cuisine" (change)="cuisine = $event.detail.value">
 </skos-picker>
 ```

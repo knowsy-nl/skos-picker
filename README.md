@@ -1,18 +1,23 @@
 # SKOS Picker — reusable taxonomy dropdown
 
-A modern replacement for a Bootstrap `<select>` bound to a SKOS controlled
-list. It searches preferred labels, alternative labels and *hidden* labels
-(typos / variants / old names), shows notation badges, inline definitions,
-parent/child grouping, and supports single- or multi-select.
+[![npm](https://img.shields.io/npm/v/@knowsy/skos-picker.svg)](https://www.npmjs.com/package/@knowsy/skos-picker)
+[![CI](https://github.com/knowsy-nl/skos-picker/actions/workflows/ci.yml/badge.svg)](https://github.com/knowsy-nl/skos-picker/actions/workflows/ci.yml)
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+
+A modern replacement for a `<select>` bound to a SKOS controlled list. It
+searches preferred labels, alternative labels and _hidden_ labels (typos /
+variants / old names), shows notation badges, inline definitions, parent/child
+grouping, and supports single- or multi-select. Framework-agnostic, with
+multilingual (SKOS / SKOS-XL) support.
 
 This is a **standalone package** (`@knowsy/skos-picker`) — it has no
 dependency on any other repository. It ships **two interchangeable
 implementations** so you can use whichever fits your stack:
 
-| Implementation                  | What it is                             | Use when …                                              |
-| ------------------------------- | -------------------------------------- | ------------------------------------------------------- |
+| Implementation                     | What it is                             | Use when …                                                                                             |
+| ---------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | `src/web-component/skos-picker.js` | Vanilla `<skos-picker>` custom element | Server-rendered pages: `.cshtml` / `.razor` / `.aspx`, or any plain HTML. No build step, no framework. |
-| `src/react/SkosPicker.jsx`         | React `<SkosPicker>` component         | A React SPA / island.                                   |
+| `src/react/SkosPicker.jsx`         | React `<SkosPicker>` component         | A React SPA / island.                                                                                  |
 
 Both render the same UX and use the same data contract. Pick one — you do
 not need both.
@@ -92,18 +97,18 @@ plain ES modules with no build step.)
 ## Framework support
 
 Because `<skos-picker>` is a standard **Web Component**, it works in every
-major framework with the *same* single implementation — there's no separate
+major framework with the _same_ single implementation — there's no separate
 port to keep in sync. Each framework just binds to its `value` property and
 `change` event (`event.detail.value`).
 
-| Framework | How | Guide |
-| --------- | --- | ----- |
-| Plain HTML / Lit | Native — `<script>` tag, done. | [§1](#1-vanilla-web-component-srcweb-componentskos-pickerjs) above |
-| **React** | Dedicated component (`@knowsy/skos-picker/react`). | [§2](#2-react-component-srcreactskospickerjsx) above |
-| **Angular** | Ships a `ControlValueAccessor` directive for `ngModel` / reactive forms (`@knowsy/skos-picker/angular`). | [docs/frameworks/angular.md](docs/frameworks/angular.md) |
-| **Vue 3** | Native — `v-model` works with one compiler flag. | [docs/frameworks/vue.md](docs/frameworks/vue.md) |
-| **Svelte** | Native, including `bind:value`. | [docs/frameworks/svelte.md](docs/frameworks/svelte.md) |
-| **SolidJS** | Native — `prop:value` + `on:change`. | [docs/frameworks/solid.md](docs/frameworks/solid.md) |
+| Framework        | How                                                                                                      | Guide                                                              |
+| ---------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Plain HTML / Lit | Native — `<script>` tag, done.                                                                           | [§1](#1-vanilla-web-component-srcweb-componentskos-pickerjs) above |
+| **React**        | Dedicated component (`@knowsy/skos-picker/react`).                                                       | [§2](#2-react-component-srcreactskospickerjsx) above               |
+| **Angular**      | Ships a `ControlValueAccessor` directive for `ngModel` / reactive forms (`@knowsy/skos-picker/angular`). | [docs/frameworks/angular.md](docs/frameworks/angular.md)           |
+| **Vue 3**        | Native — `v-model` works with one compiler flag.                                                         | [docs/frameworks/vue.md](docs/frameworks/vue.md)                   |
+| **Svelte**       | Native, including `bind:value`.                                                                          | [docs/frameworks/svelte.md](docs/frameworks/svelte.md)             |
+| **SolidJS**      | Native — `prop:value` + `on:change`.                                                                     | [docs/frameworks/solid.md](docs/frameworks/solid.md)               |
 
 See [docs/frameworks/](docs/frameworks/) for the per-framework guides. Only
 React and Angular ship adapter code; Vue/Svelte/Solid use the element
@@ -125,7 +130,8 @@ like a native form control:
     scheme-id="Cuisine"
     value="Italian"
     placeholder="Pick a cuisine…"
-    data-source="/api/vocab/Cuisine">
+    data-source="/api/vocab/Cuisine"
+  >
   </skos-picker>
 </form>
 ```
@@ -136,19 +142,19 @@ a `change` event on every selection.
 
 ### Attributes
 
-| Attribute            | Meaning                                                                 |
-| -------------------- | ----------------------------------------------------------------------- |
-| `scheme-id`          | **Required.** Id of the controlled list (last segment of the list IRI). |
-| `value`              | Current value (single string, or comma-separated IRIs for multi).       |
-| `name`               | Form field name for form-data submission.                               |
-| `multiple`           | Presence → multi-select with chips.                                     |
-| `placeholder`        | Custom placeholder text.                                                |
-| `disabled`           | Disable the control.                                                    |
-| `min-chars`          | Min characters before the in-panel filter kicks in (default 0).         |
-| `lang`               | BCP-47 tag (`en`, `nl`, `de`…) selecting the display language. **Optional** — defaults to `<html lang>`, then `en`. See [§4](#4-languages-i18n). |
-| `lang-default`       | Optional fallback tag used when `lang` is missing from a language map.  |
-| `data-source`        | **Production data URL** — see §3. Without it, falls back to bundled demo data. |
-| `hide-footer`, `hide-scheme-code`, `hide-key-hints`, `hide-notations`, `hide-alt-labels`, `hide-definitions`, `hide-counter`, `hide-group-headers` | Turn off individual visual touches. |
+| Attribute                                                                                                                                          | Meaning                                                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `scheme-id`                                                                                                                                        | **Required.** Id of the controlled list (last segment of the list IRI).                                                                          |
+| `value`                                                                                                                                            | Current value (single string, or comma-separated IRIs for multi).                                                                                |
+| `name`                                                                                                                                             | Form field name for form-data submission.                                                                                                        |
+| `multiple`                                                                                                                                         | Presence → multi-select with chips.                                                                                                              |
+| `placeholder`                                                                                                                                      | Custom placeholder text.                                                                                                                         |
+| `disabled`                                                                                                                                         | Disable the control.                                                                                                                             |
+| `min-chars`                                                                                                                                        | Min characters before the in-panel filter kicks in (default 0).                                                                                  |
+| `lang`                                                                                                                                             | BCP-47 tag (`en`, `nl`, `de`…) selecting the display language. **Optional** — defaults to `<html lang>`, then `en`. See [§4](#4-languages-i18n). |
+| `lang-default`                                                                                                                                     | Optional fallback tag used when `lang` is missing from a language map.                                                                           |
+| `data-source`                                                                                                                                      | **Production data URL** — see §3. Without it, falls back to bundled demo data.                                                                   |
+| `hide-footer`, `hide-scheme-code`, `hide-key-hints`, `hide-notations`, `hide-alt-labels`, `hide-definitions`, `hide-counter`, `hide-group-headers` | Turn off individual visual touches.                                                                                                              |
 
 ### Theming
 
@@ -171,7 +177,7 @@ the folder with any static HTTP server and open `demo/web-component-demo.html`
 
 ```jsx
 import SkosPicker from '@knowsy/skos-picker/react';
-import '@knowsy/skos-picker/react/styles.css';   // import the styles once
+import '@knowsy/skos-picker/react/styles.css'; // import the styles once
 // (or relative paths if you copied src/ in: './src/react/SkosPicker.jsx', etc.)
 
 <SkosPicker
@@ -180,8 +186,8 @@ import '@knowsy/skos-picker/react/styles.css';   // import the styles once
   onChange={setValue}
   multiple={false}
   placeholder="Pick a cuisine…"
-  contextText={someFreeText}             // optional → drives "smart suggestions"
-/>
+  contextText={someFreeText} // optional → drives "smart suggestions"
+/>;
 ```
 
 **Peer dependencies:** `react`, `react-dom`, and `lucide-react` (icons).
@@ -206,19 +212,20 @@ exact:
 
 ```jsonc
 {
-  "id":    "https://example.org/vocab/Cuisine",              // required, list IRI
-  "label": "Cuisine",                                        // required, panel header
-  "concepts": [                                              // required, may be empty
+  "id": "https://example.org/vocab/Cuisine", // required, list IRI
+  "label": "Cuisine", // required, panel header
+  "concepts": [
+    // required, may be empty
     {
-      "id":           "https://example.org/vocab/Cuisine/Italian",
-      "label":        "Italian",                             // required, main name
-      "altLabels":    ["Mediterranean"],                     // optional, shown + searchable
-      "hiddenLabels": ["italiano", "it"],                    // optional, searchable only
-      "definition":   "Cooking traditions of Italy.",        // optional, scope note
-      "notation":     null,                                  // optional, short code badge
-      "group":        "Europe"                               // optional, group header
-    }
-  ]
+      "id": "https://example.org/vocab/Cuisine/Italian",
+      "label": "Italian", // required, main name
+      "altLabels": ["Mediterranean"], // optional, shown + searchable
+      "hiddenLabels": ["italiano", "it"], // optional, searchable only
+      "definition": "Cooking traditions of Italy.", // optional, scope note
+      "notation": null, // optional, short code badge
+      "group": "Europe", // optional, group header
+    },
+  ],
 }
 ```
 
@@ -232,26 +239,27 @@ as cleanly. Do the projection wherever your taxonomy lives (a SPARQL
 `CONSTRUCT`, a build step, or your API layer); the element itself is
 RDF-library-free and stays zero-dependency.
 
-| JSON field             | SKOS                          | SKOS-XL                                            |
-| ---------------------- | ----------------------------- | -------------------------------------------------- |
-| `scheme.id`            | `skos:ConceptScheme` IRI      | same                                               |
-| `scheme.label`         | `dct:title` / `rdfs:label`    | same                                               |
-| `concept.id`           | `skos:Concept` IRI            | same                                               |
-| `concept.label`        | `skos:prefLabel`              | `skosxl:prefLabel` → `skosxl:literalForm`          |
-| `concept.altLabels`    | `skos:altLabel`               | `skosxl:altLabel` → `skosxl:literalForm`           |
-| `concept.hiddenLabels` | `skos:hiddenLabel`            | `skosxl:hiddenLabel` → `skosxl:literalForm`        |
-| `concept.definition`   | `skos:definition` / `scopeNote` | same                                             |
-| `concept.notation`     | `skos:notation`               | same                                               |
-| `concept.broader`      | `skos:broader` (parent IRI)   | same                                               |
-| `concept.group`        | grouping concept / `skos:Collection` | same                                       |
+| JSON field             | SKOS                                 | SKOS-XL                                     |
+| ---------------------- | ------------------------------------ | ------------------------------------------- |
+| `scheme.id`            | `skos:ConceptScheme` IRI             | same                                        |
+| `scheme.label`         | `dct:title` / `rdfs:label`           | same                                        |
+| `concept.id`           | `skos:Concept` IRI                   | same                                        |
+| `concept.label`        | `skos:prefLabel`                     | `skosxl:prefLabel` → `skosxl:literalForm`   |
+| `concept.altLabels`    | `skos:altLabel`                      | `skosxl:altLabel` → `skosxl:literalForm`    |
+| `concept.hiddenLabels` | `skos:hiddenLabel`                   | `skosxl:hiddenLabel` → `skosxl:literalForm` |
+| `concept.definition`   | `skos:definition` / `scopeNote`      | same                                        |
+| `concept.notation`     | `skos:notation`                      | same                                        |
+| `concept.broader`      | `skos:broader` (parent IRI)          | same                                        |
+| `concept.group`        | grouping concept / `skos:Collection` | same                                        |
 
-**SKOS-XL:** the picker consumes plain literal label *strings*, not the
+**SKOS-XL:** the picker consumes plain literal label _strings_, not the
 reified `skosxl:Label` resources. A SKOS-XL source resolves each
 `skosxl:prefLabel`/`altLabel`/`hiddenLabel` to its `skosxl:literalForm` and
 emits the string. For language, resolve labels to the requested language
 server-side (the picker forwards the browser's `Accept-Language`).
 
 **Server-side notes**
+
 - The submitted value is the full **IRI** of the selected concept (comma-
   separated IRIs for multi-select). Store it as an indexed string column.
 - Set `Cache-Control: public, max-age=3600` (or longer) if your lists change
@@ -285,8 +293,7 @@ query param) and re-fetches when `lang` changes. Your endpoint returns labels
 already resolved to that language.
 
 ```html
-<skos-picker scheme-id="Cuisine" lang="nl" data-source="/api/vocab/Cuisine">
-</skos-picker>
+<skos-picker scheme-id="Cuisine" lang="nl" data-source="/api/vocab/Cuisine"> </skos-picker>
 <!-- GET /api/vocab/Cuisine?lang=nl   (Accept-Language: nl) -->
 ```
 
@@ -302,12 +309,11 @@ already holds every language):
   "concepts": [
     {
       "id": "https://example.org/vocab/Cuisine/Italian",
-      "label":      { "en": "Italian", "nl": "Italiaans" },
-      "altLabels":  [{ "en": "Mediterranean", "nl": "Mediterraans" }],
-      "definition": { "en": "Cooking traditions of Italy.",
-                      "nl": "Kooktradities van Italië." }
-    }
-  ]
+      "label": { "en": "Italian", "nl": "Italiaans" },
+      "altLabels": [{ "en": "Mediterranean", "nl": "Mediterraans" }],
+      "definition": { "en": "Cooking traditions of Italy.", "nl": "Kooktradities van Italië." },
+    },
+  ],
 }
 ```
 
@@ -384,6 +390,15 @@ all four entry points):
 The DOM-free logic lives in `resolve.js` precisely so it can be tested
 directly rather than through the element. CI (`.github/workflows/ci.yml`)
 runs the suite and the demo build on Node 20 and 22.
+
+---
+
+## Contributing
+
+Contributions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for the dev
+setup, scripts, and testing expectations. By participating you agree to the
+[Code of Conduct](CODE_OF_CONDUCT.md). Security issues: see
+[SECURITY.md](SECURITY.md). Changes are tracked in [CHANGELOG.md](CHANGELOG.md).
 
 ---
 

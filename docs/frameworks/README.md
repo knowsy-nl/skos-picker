@@ -21,14 +21,14 @@ import '@knowsy/skos-picker/web-component';
 
 Then follow the per-framework guide:
 
-| Framework | Guide | Needs a wrapper? |
-| --------- | ----- | ---------------- |
-| Angular   | [angular.md](./angular.md) | A small `ControlValueAccessor` directive (shipped) for `ngModel` / reactive forms. |
-| Vue 3     | [vue.md](./vue.md)         | No — `v-model` works with one config flag. |
-| Svelte    | [svelte.md](./svelte.md)   | No — native, including `bind:`. |
-| SolidJS   | [solid.md](./solid.md)     | No — native. |
-| React     | see main README §2         | Uses the dedicated React component (`@knowsy/skos-picker/react`). |
-| Plain HTML / Lit / others | main README §1 | No — it's a native element. |
+| Framework                 | Guide                      | Needs a wrapper?                                                                   |
+| ------------------------- | -------------------------- | ---------------------------------------------------------------------------------- |
+| Angular                   | [angular.md](./angular.md) | A small `ControlValueAccessor` directive (shipped) for `ngModel` / reactive forms. |
+| Vue 3                     | [vue.md](./vue.md)         | No — `v-model` works with one config flag.                                         |
+| Svelte                    | [svelte.md](./svelte.md)   | No — native, including `bind:`.                                                    |
+| SolidJS                   | [solid.md](./solid.md)     | No — native.                                                                       |
+| React                     | see main README §2         | Uses the dedicated React component (`@knowsy/skos-picker/react`).                  |
+| Plain HTML / Lit / others | main README §1             | No — it's a native element.                                                        |
 
 > **Why React is different:** React versions before 19 didn't pass non-string
 > props or listen to custom events on custom elements cleanly, so the package

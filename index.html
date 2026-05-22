@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,7 +6,12 @@
     <title>@knowsy/skos-picker — demos</title>
     <style>
       body {
-        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        font-family:
+          system-ui,
+          -apple-system,
+          'Segoe UI',
+          Roboto,
+          sans-serif;
         background: #f8f9fa;
         color: #0f172a;
         max-width: 720px;
@@ -14,8 +19,13 @@
         padding: 3rem 1.5rem;
         line-height: 1.6;
       }
-      h1 { margin-bottom: 0.25rem; }
-      .sub { color: #64748b; margin-top: 0; }
+      h1 {
+        margin-bottom: 0.25rem;
+      }
+      .sub {
+        color: #64748b;
+        margin-top: 0;
+      }
       .card {
         display: block;
         background: #fff;
@@ -27,17 +37,30 @@
         color: inherit;
         box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
       }
-      .card:hover { border-color: #2563eb; }
-      .card h3 { margin: 0 0 0.25rem; color: #2563eb; }
-      .card p { margin: 0; color: #475569; font-size: 0.9rem; }
-      code { background: #f1f5f9; padding: 0.1rem 0.35rem; border-radius: 3px; }
+      .card:hover {
+        border-color: #2563eb;
+      }
+      .card h3 {
+        margin: 0 0 0.25rem;
+        color: #2563eb;
+      }
+      .card p {
+        margin: 0;
+        color: #475569;
+        font-size: 0.9rem;
+      }
+      code {
+        background: #f1f5f9;
+        padding: 0.1rem 0.35rem;
+        border-radius: 3px;
+      }
     </style>
   </head>
   <body>
     <h1>&lt;skos-picker&gt;</h1>
     <p class="sub">
-      A framework-agnostic SKOS taxonomy picker. Two interchangeable
-      implementations — pick the one that fits your stack.
+      A framework-agnostic SKOS taxonomy picker. Two interchangeable implementations — pick the one
+      that fits your stack.
     </p>
 
     <a class="card" href="demo/web-component-demo.html">
@@ -51,15 +74,11 @@
 
     <a class="card" href="demo/react-demo.html">
       <h3>React component →</h3>
-      <p>
-        The <code>&lt;SkosPicker&gt;</code> React component, same UX, for a
-        React app.
-      </p>
+      <p>The <code>&lt;SkosPicker&gt;</code> React component, same UX, for a React app.</p>
     </a>
 
-    <p class="sub" style="margin-top: 2rem; font-size: 0.85rem;">
-      See <code>README.md</code> for usage, attributes and the production
-      data-source contract.
+    <p class="sub" style="margin-top: 2rem; font-size: 0.85rem">
+      See <code>README.md</code> for usage, attributes and the production data-source contract.
     </p>
   </body>
 </html>

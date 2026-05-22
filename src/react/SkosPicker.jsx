@@ -43,10 +43,7 @@ export default function SkosPicker({
   const wrapRef = useRef(null);
   const inputRef = useRef(null);
 
-  const enriched = useMemo(
-    () => (scheme ? getEnrichedConcepts(schemeId) : []),
-    [schemeId, scheme]
-  );
+  const enriched = useMemo(() => (scheme ? getEnrichedConcepts(schemeId) : []), [schemeId, scheme]);
   const enrichedById = useMemo(
     () => Object.fromEntries(enriched.map((c) => [c.id, c])),
     [enriched]
@@ -57,9 +54,7 @@ export default function SkosPicker({
     return value ? [value] : [];
   }, [value, multiple]);
 
-  const selectedConcepts = selectedIds
-    .map((id) => enrichedById[id])
-    .filter(Boolean);
+  const selectedConcepts = selectedIds.map((id) => enrichedById[id]).filter(Boolean);
 
   // Smart suggestions: rank by token overlap with contextText, including altLabels
   const suggestions = useMemo(() => {
@@ -79,10 +74,7 @@ export default function SkosPicker({
           if (lab === t) score += 5;
           else if (lab.startsWith(t)) score += 3;
           else if (lab.includes(t)) score += 2;
-          else if (
-            lab.split(/\s+/).some((w) => w.startsWith(t) || t.startsWith(w))
-          )
-            score += 1;
+          else if (lab.split(/\s+/).some((w) => w.startsWith(t) || t.startsWith(w))) score += 1;
           for (const a of alts) {
             if (a === t) score += 4;
             else if (a.includes(t)) score += 2;
@@ -113,8 +105,7 @@ export default function SkosPicker({
     });
   }, [query, enriched, minChars]);
 
-  const belowMinChars =
-    minChars > 0 && query.trim().length > 0 && query.trim().length < minChars;
+  const belowMinChars = minChars > 0 && query.trim().length > 0 && query.trim().length < minChars;
 
   // Group filtered list by enrichment.group (when sort='group')
   const grouped = useMemo(() => {
@@ -141,10 +132,7 @@ export default function SkosPicker({
 
   // index of selectable items only (concepts)
   const conceptItemIndices = useMemo(
-    () =>
-      flatItems
-        .map((item, idx) => (item.kind === 'concept' ? idx : -1))
-        .filter((i) => i >= 0),
+    () => flatItems.map((item, idx) => (item.kind === 'concept' ? idx : -1)).filter((i) => i >= 0),
     [flatItems]
   );
 
@@ -316,9 +304,7 @@ export default function SkosPicker({
             )}
             <span className="value-label">{singleSelected.label}</span>
             {singleSelected.altLabels?.length > 0 && (
-              <span className="value-alts">
-                ({singleSelected.altLabels.join(' / ')})
-              </span>
+              <span className="value-alts">({singleSelected.altLabels.join(' / ')})</span>
             )}
           </span>
         )}
@@ -333,10 +319,7 @@ export default function SkosPicker({
             placeholder={
               single && singleSelected
                 ? ''
-                : placeholder ||
-                  (single
-                    ? `Select ${scheme.label}…`
-                    : `Tag with ${scheme.label}…`)
+                : placeholder || (single ? `Select ${scheme.label}…` : `Tag with ${scheme.label}…`)
             }
             onChange={(e) => {
               setQuery(e.target.value);
@@ -385,9 +368,7 @@ export default function SkosPicker({
                     onClick={() => toggle(s.id)}
                   >
                     <Tag size={11} />
-                    {s.notation && (
-                      <span className="suggest-notation">{s.notation}</span>
-                    )}
+                    {s.notation && <span className="suggest-notation">{s.notation}</span>}
                     {s.label}
                   </button>
                 ))}
@@ -429,28 +410,20 @@ export default function SkosPicker({
                   key={c.id}
                   className={`skos-picker-option ${
                     isActive ? 'active' : ''
-                  } ${isSelected ? 'selected' : ''} ${
-                    c.isCatchall ? 'catchall' : ''
-                  }`}
+                  } ${isSelected ? 'selected' : ''} ${c.isCatchall ? 'catchall' : ''}`}
                   onMouseEnter={() => setActiveIdx(conceptIdx)}
                   onMouseDown={(e) => {
                     e.preventDefault();
                     toggle(c.id);
                   }}
                 >
-                  <span className="check">
-                    {isSelected && <Check size={14} />}
-                  </span>
+                  <span className="check">{isSelected && <Check size={14} />}</span>
                   <div className="label-block">
                     <div className="label-line">
-                      {c.notation && (
-                        <span className="label-notation">{c.notation}</span>
-                      )}
+                      {c.notation && <span className="label-notation">{c.notation}</span>}
                       <span className="label-text">{highlight(c.label)}</span>
                       {c.altLabels?.length > 0 && (
-                        <span className="label-alts">
-                          ({c.altLabels.join(' / ')})
-                        </span>
+                        <span className="label-alts">({c.altLabels.join(' / ')})</span>
                       )}
                       {c.broader && (
                         <span className="label-broader" title={`Narrower of ${c.broader}`}>
@@ -470,13 +443,14 @@ export default function SkosPicker({
                         c.hiddenLabels.some((h) =>
                           h.toLowerCase().includes(query.toLowerCase())
                         ) && (
-                          <span className="label-hidden-match" title="Matched a hidden label (typo/variant)">
+                          <span
+                            className="label-hidden-match"
+                            title="Matched a hidden label (typo/variant)"
+                          >
                             via hiddenLabel
                           </span>
                         )}
-                      {c.isCatchall && (
-                        <span className="label-catchall-badge">catch-all</span>
-                      )}
+                      {c.isCatchall && <span className="label-catchall-badge">catch-all</span>}
                     </div>
                     {c.definition && (
                       <div className="label-definition">
