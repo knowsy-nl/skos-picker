@@ -71,6 +71,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "audit": "pnpm audit --audit-level high",
     "prepublishOnly": "pnpm test && pnpm run build:angular"
   },
   "peerDependencies": {
@@ -98,9 +99,11 @@
     }
   },
   "devDependencies": {
+    "@angular/common": "^21.2.14",
     "@angular/compiler": "^21.2.14",
-    "@angular/core": "^18.2.0",
-    "@angular/forms": "^18.2.0",
+    "@angular/core": "^21.2.14",
+    "@angular/forms": "^21.2.14",
+    "@angular/platform-browser": "^21.2.14",
     "@eslint/js": "^9.15.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.1.0",
@@ -110,7 +113,7 @@
     "eslint-plugin-react": "^7.37.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "globals": "^17.6.0",
-    "happy-dom": "^15.11.0",
+    "happy-dom": "^20.9.0",
     "prettier": "^3.3.0",
     "lucide-react": "^1.16.0",
     "react": "^19.2.0",

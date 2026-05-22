@@ -1,0 +1,39 @@
+name: CodeQL
+
+# Static analysis of our own JS/TS for security issues (injection, XSS,
+# unsafe DOM sinks, etc.) — the class of bug Dependabot can't see. Results
+# appear in the repository Security tab.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '27 4 * * 1' # weekly, Monday — catches newly-published rules
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write # upload findings to the Security tab
+      actions: read
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [javascript-typescript]
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@84498526a009a99c875e83ef4821a8ba52de7c22 # codeql-bundle-v2.25.5
+        with:
+          languages: ${{ matrix.language }}
+          queries: security-extended
+
+      - name: Analyze
+        uses: github/codeql-action/analyze@84498526a009a99c875e83ef4821a8ba52de7c22 # codeql-bundle-v2.25.5
