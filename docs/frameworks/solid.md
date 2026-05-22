@@ -6,7 +6,7 @@ events to them. No wrapper needed.
 ## Register and use
 
 ```jsx
-import '@taxonomy/skos-picker/web-component';
+import '@knowsy/skos-picker/web-component';
 import { createSignal } from 'solid-js';
 
 function TagForm() {

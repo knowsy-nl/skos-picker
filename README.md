@@ -5,7 +5,7 @@ list. It searches preferred labels, alternative labels and *hidden* labels
 (typos / variants / old names), shows notation badges, inline definitions,
 parent/child grouping, and supports single- or multi-select.
 
-This is a **standalone package** (`@taxonomy/skos-picker`) — it has no
+This is a **standalone package** (`@knowsy/skos-picker`) — it has no
 dependency on any other repository. It ships **two interchangeable
 implementations** so you can use whichever fits your stack:
 
@@ -19,7 +19,7 @@ not need both.
 
 ```
 skos-picker/
-├── package.json                ← @taxonomy/skos-picker
+├── package.json                ← @knowsy/skos-picker
 ├── vite.config.js              ← dev server / demo build (not needed to consume the component)
 ├── index.html                  ← landing page linking to both demos
 ├── src/
@@ -70,18 +70,18 @@ here references any other project — this folder is self-contained.
 Install it (from a registry, or a `file:`/workspace link):
 
 ```bash
-pnpm add @taxonomy/skos-picker        # or: npm install @taxonomy/skos-picker
+pnpm add @knowsy/skos-picker        # or: npm install @knowsy/skos-picker
 ```
 
 Then import what you need:
 
 ```js
 // Vanilla custom element (registers <skos-picker>):
-import '@taxonomy/skos-picker/web-component';
+import '@knowsy/skos-picker/web-component';
 
 // React component + its styles:
-import SkosPicker from '@taxonomy/skos-picker/react';
-import '@taxonomy/skos-picker/react/styles.css';
+import SkosPicker from '@knowsy/skos-picker/react';
+import '@knowsy/skos-picker/react/styles.css';
 ```
 
 (Or just copy the files under `src/` straight into your project — they are
@@ -99,8 +99,8 @@ port to keep in sync. Each framework just binds to its `value` property and
 | Framework | How | Guide |
 | --------- | --- | ----- |
 | Plain HTML / Lit | Native — `<script>` tag, done. | [§1](#1-vanilla-web-component-srcweb-componentskos-pickerjs) above |
-| **React** | Dedicated component (`@taxonomy/skos-picker/react`). | [§2](#2-react-component-srcreactskospickerjsx) above |
-| **Angular** | Ships a `ControlValueAccessor` directive for `ngModel` / reactive forms (`@taxonomy/skos-picker/angular`). | [docs/frameworks/angular.md](docs/frameworks/angular.md) |
+| **React** | Dedicated component (`@knowsy/skos-picker/react`). | [§2](#2-react-component-srcreactskospickerjsx) above |
+| **Angular** | Ships a `ControlValueAccessor` directive for `ngModel` / reactive forms (`@knowsy/skos-picker/angular`). | [docs/frameworks/angular.md](docs/frameworks/angular.md) |
 | **Vue 3** | Native — `v-model` works with one compiler flag. | [docs/frameworks/vue.md](docs/frameworks/vue.md) |
 | **Svelte** | Native, including `bind:value`. | [docs/frameworks/svelte.md](docs/frameworks/svelte.md) |
 | **SolidJS** | Native — `prop:value` + `on:change`. | [docs/frameworks/solid.md](docs/frameworks/solid.md) |
@@ -170,8 +170,8 @@ the folder with any static HTTP server and open `demo/web-component-demo.html`
 ## 2. React component (`src/react/SkosPicker.jsx`)
 
 ```jsx
-import SkosPicker from '@taxonomy/skos-picker/react';
-import '@taxonomy/skos-picker/react/styles.css';   // import the styles once
+import SkosPicker from '@knowsy/skos-picker/react';
+import '@knowsy/skos-picker/react/styles.css';   // import the styles once
 // (or relative paths if you copied src/ in: './src/react/SkosPicker.jsx', etc.)
 
 <SkosPicker

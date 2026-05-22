@@ -29,7 +29,7 @@ export default {
 
 ```vue
 <script setup>
-import '@taxonomy/skos-picker/web-component';
+import '@knowsy/skos-picker/web-component';
 import { ref } from 'vue';
 
 const cuisine = ref('Italian');

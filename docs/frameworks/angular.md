@@ -8,7 +8,7 @@ ships that accessor — you don't write it yourself.
 
 ```ts
 // main.ts (or wherever you bootstrap)
-import '@taxonomy/skos-picker/web-component';
+import '@knowsy/skos-picker/web-component';
 ```
 
 In the standalone component (or NgModule) that uses the picker, add the
@@ -17,7 +17,7 @@ custom-elements schema:
 ```ts
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SkosPickerValueAccessor } from '@taxonomy/skos-picker/angular';
+import { SkosPickerValueAccessor } from '@knowsy/skos-picker/angular';
 
 @Component({
   selector: 'app-tag-form',

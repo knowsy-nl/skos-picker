@@ -7,7 +7,7 @@ flag. Both Svelte 4 and Svelte 5 work.
 
 ```svelte
 <script>
-  import '@taxonomy/skos-picker/web-component';
+  import '@knowsy/skos-picker/web-component';
 
   let cuisine = 'Italian';
 

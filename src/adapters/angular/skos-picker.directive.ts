@@ -14,7 +14,7 @@
  * Usage:
  *
  *   // 1. Register the element once (e.g. in main.ts):
- *   import '@taxonomy/skos-picker/web-component';
+ *   import '@knowsy/skos-picker/web-component';
  *
  *   // 2. Allow custom elements in the module/component that uses it:
  *   //    standalone component → schemas: [CUSTOM_ELEMENTS_SCHEMA]
